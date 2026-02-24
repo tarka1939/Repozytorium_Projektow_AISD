@@ -1,0 +1,4 @@
+﻿  Source.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\include\filesystem(13): warning STL4038: The contents of <filesystem> are available only with C++17 or later.
+D:\repos\AISD_Proj2_2024 Hex\mini Stos\Source.cpp(19,13): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  mini Stos.vcxproj -> D:\repos\AISD_Proj2_2024 Hex\x64\Debug\mini Stos.exe

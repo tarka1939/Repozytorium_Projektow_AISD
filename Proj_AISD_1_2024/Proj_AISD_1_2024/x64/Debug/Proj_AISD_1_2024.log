@@ -1,0 +1,12 @@
+﻿  myString.cpp
+D:\repos\Proj_AISD_1_2024\Proj_AISD_1_2024\myString.cpp(19,15): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\repos\Proj_AISD_1_2024\Proj_AISD_1_2024\myString.cpp(43,16): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
+D:\repos\Proj_AISD_1_2024\Proj_AISD_1_2024\myString.cpp(69,15): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\repos\Proj_AISD_1_2024\Proj_AISD_1_2024\Vector.h(57,17): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\repos\Proj_AISD_1_2024\Proj_AISD_1_2024\Vector.h(56,1): message : while compiling class template member function 'void Vector<char>::resize(void)'
+D:\repos\Proj_AISD_1_2024\Proj_AISD_1_2024\Vector.h(48,9): message : see the first reference to 'Vector<char>::resize' in 'Vector<char>::push'
+D:\repos\Proj_AISD_1_2024\Proj_AISD_1_2024\myString.cpp(17,12): message : see the first reference to 'Vector<char>::push' in 'myString::myString'
+D:\repos\Proj_AISD_1_2024\Proj_AISD_1_2024\Vector.h(107,1): message : while compiling class template member function 'void Vector<char>::clear(void)'
+D:\repos\Proj_AISD_1_2024\Proj_AISD_1_2024\myString.cpp(58,12): message : see the first reference to 'Vector<char>::clear' in 'myString::clear'
+D:\repos\Proj_AISD_1_2024\Proj_AISD_1_2024\myString.h(10,16): message : see reference to class template instantiation 'Vector<char>' being compiled
+  Proj_AISD_1_2024.vcxproj -> D:\repos\Proj_AISD_1_2024\x64\Debug\Proj_AISD_1_2024.exe
