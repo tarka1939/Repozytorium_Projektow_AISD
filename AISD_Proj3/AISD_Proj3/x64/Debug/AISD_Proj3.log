@@ -1,3 +1,0 @@
-﻿  GraphList.cpp
-D:\repos\AISD_Proj3\AISD_Proj3\GraphList.cpp(93,20): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  AISD_Proj3.vcxproj -> D:\repos\AISD_Proj3\x64\Debug\AISD_Proj3.exe

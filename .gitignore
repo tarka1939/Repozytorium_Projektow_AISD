@@ -1,0 +1,33 @@
+# Visual Studio / MSVC build artifacts
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Ww]in32/
+*.obj
+*.ilk
+*.pdb
+*.idb
+*.exe
+*.exp
+*.lib
+*.iobj
+*.ipdb
+*.tlog/
+*.log
+*.recipe
+
+# Visual Studio IDE files
+.vs/
+*.vcxproj.user
+*.sdf
+*.opensdf
+*.suo
+*.VC.db
+*.VC.opendb
+ipch/
+*.aps
+
+# Precompiled headers
+*.pch
+*.ipch
