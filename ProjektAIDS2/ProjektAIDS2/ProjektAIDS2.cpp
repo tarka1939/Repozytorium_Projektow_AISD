@@ -13,11 +13,16 @@ void ScanCSS(BlockList<CSS> &cssy, int &NumOfCss) {
         scanf(" ????%n", &n);
         if (n != 0)
             break;
+        if (feof(stdin))
+            return;
         while (true) {
             char* selector = new char[INPUTSIZE];
             selector[0] = '\0';
             char next = 0;
-            if (scanf(" %[^,{\n]\n%c", selector, &next) == 0) {
+            int read = scanf(" %[^,{\n]\n%c", selector, &next);
+            if (read == EOF)
+                return;
+            if (read == 0) {
                 newCSS->selectors[newCSS->selNum] = selector;
                 newCSS->selNum++;
                 break;
@@ -42,7 +47,8 @@ void ScanCSS(BlockList<CSS> &cssy, int &NumOfCss) {
             char* attribute = new char[INPUTSIZE];
             char* value = new char[200];
             int next = 0;
-            scanf(" %[^:]: %[^;];\n", attribute, value);
+            if (scanf(" %[^:]: %[^;];\n", attribute, value) == EOF)
+                return;
             //cout << attribute << endl;
             //cout << value << endl; 
             scanf(" }%n", &next);
@@ -97,10 +103,6 @@ int main()
         char command3[INPUTSIZE]="";
         int num = 0;
         
-        if (feof(stdin)) {
-            break;
-
-        }
         if (sscanf(line, "****%n\n", &num)==1 || num == 4) {
             ScanCSS(cssy, NumOfCss);
         }
@@ -115,9 +117,8 @@ int main()
                 if (isdigit(command1[0])) {
                     int i;
                     sscanf(command1, "%d", &i);
-                    CSS temp = cssy[i-1];
-                    
                     if (i <= NumOfCss) {
+                        CSS temp = cssy[i - 1];
                         if (!strcmp(command3, "?")) {
                             //i,S,? – wypisz liczbę selektorów dla sekcji nr i (numery zaczynają się od 1), jeśli nie ma takiego bloku pomiń;
                             cout << command1 << "," << command2 << "," << command3 << " == ";
@@ -243,6 +244,8 @@ int main()
                         //i,D,n – usuń z i-tej sekcji atrybut o nazwie n, jeśli w wyniku operacji pozostaje pusta sekcja powinna zostać również usunięta (wraz z ew. selektorami), po poprawnym wykonaniu wypisz deleted;
                         int i;
                         sscanf(command1, "%d", &i);
+                        if (i > NumOfCss)
+                            continue;
                         CSS& temp = cssy[i - 1];
                         for (int attriNum = 0; attriNum < temp.attriNum; attriNum++) {
                             if (strcmp(temp.attributes[attriNum], command3) == 0) {
