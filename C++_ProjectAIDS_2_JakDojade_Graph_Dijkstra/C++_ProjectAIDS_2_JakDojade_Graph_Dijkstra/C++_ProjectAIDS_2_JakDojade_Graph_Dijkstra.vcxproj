@@ -128,7 +128,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="old.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Graph.cpp" />
@@ -136,7 +135,6 @@
   <ItemGroup>
     <ClInclude Include="Cell.h" />
     <ClInclude Include="Graph.h" />
-    <ClInclude Include="HashMap.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="MinHeap.h" />
     <ClInclude Include="Node.h" />
