@@ -32,23 +32,36 @@ void RPN::loadExpression(myString expression)
 void RPN::convertToPostfix() {
 	Stack<myString> stack;
 	Queue<myString> out;
-	
+	//number of arguments inside each currently open parenthesis
+	Stack<int> argCounts;
+
 	for (int i = 0; i < infixFormula.getSize(); i++) {
 		char firstSymbol = infixFormula[i][0];
 		if (firstSymbol >= '0' && firstSymbol <= '9')
 			out.push(infixFormula[i]);
 		else if (firstSymbol == 'I' || firstSymbol == 'M' || firstSymbol == 'N')
-			stack.push(infixFormula[i]);	
+			stack.push(infixFormula[i]);
 		else if (firstSymbol == ',') {
 			while(!(stack.top() == "("))
 				out.push(stack.pop());
+			argCounts.push(argCounts.pop() + 1);
 		}
-		else if (firstSymbol == '(')
+		else if (firstSymbol == '(') {
 			stack.push(infixFormula[i]);
+			argCounts.push(1);
+		}
 		else if (firstSymbol == ')') {
 			while (!(stack.top() == "("))
 				out.push(stack.pop());
 			stack.pop();
+			int args = argCounts.pop();
+			//MIN/MAX take any number of arguments, so store the count in the token (e.g. MIN3)
+			if (!stack.isEmpty() && stack.top()[0] == 'M') {
+				bool isMin = stack.pop()[1] == 'I';
+				char buffer[20];
+				snprintf(buffer, sizeof(buffer), "%s%d", isMin ? "MIN" : "MAX", args);
+				stack.push(myString(buffer));
+			}
 		}
 		else
 		{
@@ -107,14 +120,24 @@ void RPN::calculate()
 			stack.push(buffer);
 		}
 		else if (firstSymbol == 'M') {
-			if (postfixFormula[i] == "MIN")
+			//token is MINn / MAXn, where n is the number of arguments
+			bool isMin = postfixFormula[i][1] == 'I';
+			int args = 0;
+			for (int k = 3; k < postfixFormula[i].getSize(); k++)
+				args = args * 10 + (postfixFormula[i][k] - '0');
+			std::cout << postfixFormula[i] << " ";
+			for (int i = stack.getSize() - 1; i >= 0; i--)
 			{
-				//TODO min
+				std::cout << stack[i] << " ";
 			}
-			else if (postfixFormula[i] == "MAX")
-			{
-				//TODO max
-			}
+			std::cout << std::endl;
+			Vector<int> values;
+			for (int k = 0; k < args; k++)
+				values.push(stack.pop().toInt());
+			int result = isMin ? min(values) : max(values);
+			char buffer[20];
+			snprintf(buffer, sizeof(buffer), "%d", result);
+			stack.push(buffer);
 		}
 		else {
 			
