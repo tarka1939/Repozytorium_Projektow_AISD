@@ -1,7 +1,7 @@
 #pragma once
-#include "Utils.h"
-//#include "HashMap.h"
+#include <cstring>
 #include <unordered_map>
+using namespace std;
 template <typename T = int>
 struct Node {
 	
@@ -10,7 +10,7 @@ public:
 
 	void NewConnection(Node* node, int length) {
 
-		connections[Hash(node->data)] = Connection(node, length);
+		connections[node->id] = Connection(node, length);
 	}
 	void ResetVisited() {
 		visited = false;
@@ -39,8 +39,8 @@ public:
 		return data;
 	}
 	friend class Graph;
-	int GetLengthTo(char* city) {
-		return connections[Hash(city)].length;
+	int GetLengthTo(Node* node) {
+		return connections[node->id].length;
 	}
 private:
 	T data;

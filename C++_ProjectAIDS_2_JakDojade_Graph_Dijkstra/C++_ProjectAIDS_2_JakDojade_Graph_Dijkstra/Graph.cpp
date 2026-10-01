@@ -112,12 +112,12 @@ void Graph::FloodFill(cell** map,int &sizeX, int &sizeY, Node<char*>& startnode)
 				name[i] = '\0';
 			}
 			FindCityName(map, x, y, sizeX, sizeY, name);
-			//Node <char*>* newNode = &Nodes[Hash(name)];
+			Node<char*>* target = &Nodes[name];
 			//if there is no existing connection in node.connections to newNode, call NewConnection, else check if steps are lower than existing connection length
 			bool containsHash = false;
 			for (auto& it : startnode.connections)
 			{
-				if (it.first == Hash(name))
+				if (it.first == target->id)
 				{
 					containsHash = true;
 					break;
@@ -127,13 +127,13 @@ void Graph::FloodFill(cell** map,int &sizeX, int &sizeY, Node<char*>& startnode)
 			if (!containsHash)
 			{
 
-				startnode.NewConnection(&Nodes[Hash(name)], steps);
+				startnode.NewConnection(target, steps);
 
-				//std::cout << "New connection between " << startnode.data << " and " << Nodes[Hash(name)].data << " with " << steps << " steps" << std::endl;
+				//std::cout << "New connection between " << startnode.data << " and " << target->data << " with " << steps << " steps" << std::endl;
 			}
-			else if (startnode.connections[Hash(name)].length > steps)
+			else if (startnode.connections[target->id].length > steps)
 			{
-				startnode.connections[Hash(name)].length = steps;
+				startnode.connections[target->id].length = steps;
 
 				//std::cout << "Connection changed between " << startnode.data << " and " << name << " with " << steps << " steps" << std::endl;
 			}
@@ -194,7 +194,7 @@ Graph::~Graph()
 
 void Graph::AddNode(Node<char*> second)
 {
-	Nodes[Hash(second.data)] = second;
+	Nodes[second.data] = second;
 }
 
 void Graph::ResetVisits()
@@ -225,8 +225,8 @@ void Graph::PrintShortestPath(char* node1, char* node2, bool listPath) {
 	}
 
 
-	node1ID = Nodes[Hash(node1)].id;
-	node2ID = Nodes[Hash(node2)].id;
+	node1ID = Nodes[node1].id;
+	node2ID = Nodes[node2].id;
 	nodes_D[node1ID].cost = 0;
 	//priority queue instead of scanning all nodes for the cheapest one: O(E log V) instead of O(V^2)
 	MinHeap queue(nodesNum);
@@ -359,5 +359,5 @@ void Graph::CreateGraph(char** &map, int sizeX, int sizeY, int nodes) {
 
 Node<char*>* Graph::GetNode(char* data)
 {
-	return &Nodes[Hash(data)];
+	return &Nodes[data];
 }

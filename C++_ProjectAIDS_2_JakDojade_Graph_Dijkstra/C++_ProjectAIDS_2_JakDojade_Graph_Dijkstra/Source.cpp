@@ -21,7 +21,7 @@ int CountStars(char** map, int sizeX, int sizeY) {
 	return stars;
 }
 void AddFlight(Graph& graph, char* city1, char* city2, int length) {
-	if (graph.GetNode(city1)->GetLengthTo(city2) > length) {
+	if (graph.GetNode(city1)->GetLengthTo(graph.GetNode(city2)) > length) {
 		graph.GetNode(city1)->NewConnection(graph.GetNode(city2), length);
 		//graph.GetNode(city2)->NewConnection(graph.GetNode(city1), length);
 	}

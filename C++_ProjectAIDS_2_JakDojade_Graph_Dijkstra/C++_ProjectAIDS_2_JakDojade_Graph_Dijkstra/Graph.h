@@ -1,5 +1,6 @@
 #pragma once
 #include "Node.h"
+#include <string>
 //#include <unordered_map>
 //#include "fstream"
 struct cell {
@@ -22,6 +23,6 @@ private:
 	//std::ofstream outfile;
 	void ResetVisits();		
 	int nodesNum=0;
-	unordered_map<int, Node<char*>> Nodes;
-	//HashMap<Node<char*>>* Nodes;
+	//keyed by the full city name (keying by a numeric hash of the name merged colliding cities)
+	unordered_map<string, Node<char*>> Nodes;
 };
