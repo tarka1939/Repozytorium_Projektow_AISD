@@ -139,6 +139,7 @@
     <ClInclude Include="Graph.h" />
     <ClInclude Include="HashMap.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="MinHeap.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Utils.h" />

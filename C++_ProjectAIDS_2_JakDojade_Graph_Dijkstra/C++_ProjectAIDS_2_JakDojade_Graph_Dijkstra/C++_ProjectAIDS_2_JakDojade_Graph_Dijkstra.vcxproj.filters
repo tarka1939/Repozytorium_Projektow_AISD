@@ -47,6 +47,9 @@
     <ClInclude Include="HashMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MinHeap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>

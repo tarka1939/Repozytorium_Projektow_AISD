@@ -1,6 +1,7 @@
 #include "Graph.h"
 #include <iostream>
 #include "Queue.h"
+#include "MinHeap.h"
 struct queueNode {
 	int x;
 	int y;
@@ -217,11 +218,6 @@ void Graph::PrintShortestPath(char* node1, char* node2, bool listPath) {
 	};
 	int node1ID;
 	int node2ID;
-	int* visitedNodes= new int[nodesNum];
-	for (int i = 0; i < nodesNum; i++)
-	{
-		visitedNodes[i] = -1;
-	}
 	NodeData* nodes_D = new NodeData[nodesNum];
 	for (auto &x : Nodes) {
 		nodes_D[x.second.id].node = &x.second;
@@ -231,29 +227,27 @@ void Graph::PrintShortestPath(char* node1, char* node2, bool listPath) {
 
 	node1ID = Nodes[Hash(node1)].id;
 	node2ID = Nodes[Hash(node2)].id;
-	NodeData* current = &nodes_D[node1ID];
 	nodes_D[node1ID].cost = 0;
-	NodeData* shortest=current;
-	while (!nodes_D[node2ID].Known) {
-		current = shortest;
+	//priority queue instead of scanning all nodes for the cheapest one: O(E log V) instead of O(V^2)
+	MinHeap queue(nodesNum);
+	queue.push(0, node1ID);
+	while (!queue.isEmpty()) {
+		NodeData* current = &nodes_D[queue.pop().id];
+		if (current->Known)
+			continue;	//outdated entry, the node was already reached more cheaply
 		current->Known = true;
+		if (current->id == node2ID)
+			break;
 		int costOfMove = current->cost;
 		for (auto c : current->node->connections) {
-			if (nodes_D[c.second.node->id].cost > costOfMove + c.second.length)
+			NodeData& next = nodes_D[c.second.node->id];
+			if (next.cost > costOfMove + c.second.length)
 			{
-				nodes_D[c.second.node->id].cost = costOfMove + c.second.length;
-				nodes_D[c.second.node->id].Path = current->id;
+				next.cost = costOfMove + c.second.length;
+				next.Path = current->id;
+				queue.push(next.cost, next.id);
 			}
 
-		}
-		int nextmovecost = 10000000;
-		for (int i = 0; i < nodesNum; i++)
-		{
-			if (nodes_D[i].Known == false && nodes_D[i].cost < nextmovecost)
-			{
-				nextmovecost = nodes_D[i].cost;
-				shortest = &nodes_D[i];
-			}
 		}
 	}
 	std::cout<<nodes_D[node2ID].cost;
@@ -280,7 +274,6 @@ void Graph::PrintShortestPath(char* node1, char* node2, bool listPath) {
 	std::cout << std::endl;
 	//outfile << std::endl;
 	delete [] nodes_D;
-	delete [] visitedNodes;
 };
 
 
