@@ -2,6 +2,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cstring>
+#include <limits>
 #include "Graph.h"
 #include <fstream>
 using namespace std;
@@ -51,13 +52,17 @@ int main(int argc, char* argv[]) {
 	Graph graph;
 	int sizeX, sizeY;
 	cin >> sizeX >> sizeY;
-	cin.ignore();
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	auto map = new char* [sizeY];
 	for (int i = 0; i < sizeY; i++)
 	{
-		map[i] = new char[sizeX];
+		// sizeX chars + optional '\r' (CRLF input) + '\0'
+		map[i] = new char[sizeX + 2];
 		//read whole line into map[i] using cin.getline
-		cin.getline(map[i], sizeX + 1);
+		cin.getline(map[i], sizeX + 2);
+		size_t len = strlen(map[i]);
+		if (len > 0 && map[i][len - 1] == '\r')
+			map[i][len - 1] = '\0';
 	}
 	int nodes = CountStars(map, sizeX, sizeY);
 	graph.CreateGraph(map, sizeX, sizeY, nodes);
