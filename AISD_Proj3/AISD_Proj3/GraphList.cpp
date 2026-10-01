@@ -734,7 +734,7 @@ void c4dfs_util(int** graph, int size, long long &count) {
 		sp = 0;
         stack[sp++] = {i, -1, 0};
         while (sp > 0) {
-           StackVertex& u = stack[--sp];
+           StackVertex u = stack[--sp]; // copy: the pushes below reuse this slot
             
 			for(int j=1; j<= graph[u.v][0]; j++) {
 				int v = graph[u.v][j];
