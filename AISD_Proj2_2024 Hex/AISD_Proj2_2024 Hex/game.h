@@ -1,17 +1,10 @@
 #pragma once
 
 #include <iostream>
-#include "list.h"
-#include "string.h""
+#include <cstring>
 #include <math.h>
-//#include <queue>
-#include <stack>
-#include "Queue.h"
-#include <vector>
+#include "List.h"
 #include "Vector.h"
-//#include <pair>
-#include <set>
-#include <windows.h>
 struct pair {
 	int first;
 	int second;
@@ -27,7 +20,7 @@ struct pair {
 class Game
 {
 private:
-	std::vector<pair> directions = { {1, 1}, {-1, -1}, {2, 1}, {-2, -1}, {1, 0}, {-1, 0} };
+	pair directions[6] = { {1, 1}, {-1, -1}, {2, 1}, {-2, -1}, {1, 0}, {-1, 0} };
 	char** in_board;
 	char** board;
 	char** board_copy;

@@ -1,6 +1,9 @@
 #pragma once
 
 #include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <cmath>
 #include "utils.h"
 #include "tree.h"
 

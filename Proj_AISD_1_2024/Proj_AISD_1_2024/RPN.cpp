@@ -90,7 +90,7 @@ void RPN::calculate()
 			int a = stack.pop().toInt();
 			int result = _if(a, b, c);
 			char buffer[20];
-			sprintf(buffer, "%d", result);
+			snprintf(buffer, sizeof(buffer), "%d", result);
 			stack.push(buffer);
 		}
 		else if (firstSymbol == 'N') {
@@ -103,7 +103,7 @@ void RPN::calculate()
 			int a = stack.pop().toInt();
 			int result = negation(a);
 			char buffer[20];
-			sprintf(buffer, "%d", result);
+			snprintf(buffer, sizeof(buffer), "%d", result);
 			stack.push(buffer);
 		}
 		else if (firstSymbol == 'M') {
@@ -130,7 +130,7 @@ void RPN::calculate()
 				int a = stack.pop().toInt();
 				int result = addition(a, b);
 				char buffer[20];
-				sprintf(buffer, "%d", result);
+				snprintf(buffer, sizeof(buffer), "%d", result);
 				stack.push(buffer);
 			}
 			else if (firstSymbol == '-')
@@ -145,7 +145,7 @@ void RPN::calculate()
 				int a = stack.pop().toInt();
 				int result = subtraction(a, b);
 				char buffer[20];
-				sprintf(buffer, "%d", result);
+				snprintf(buffer, sizeof(buffer), "%d", result);
 				stack.push(buffer);
 			}
 			else if (firstSymbol == '*')
@@ -160,7 +160,7 @@ void RPN::calculate()
 				int a = stack.pop().toInt();
 				int result = multiplication(a, b);
 				char buffer[20];
-				sprintf(buffer, "%d", result);
+				snprintf(buffer, sizeof(buffer), "%d", result);
 				stack.push(buffer);
 			}
 			else if (firstSymbol == '/')
@@ -180,7 +180,7 @@ void RPN::calculate()
 				else 
 				{
 					char buffer[20];
-					sprintf(buffer, "%d", result);
+					snprintf(buffer, sizeof(buffer), "%d", result);
 					stack.push(buffer);
 				}
 			}

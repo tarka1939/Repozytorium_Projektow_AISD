@@ -542,14 +542,14 @@ void Game::isBoardPossible()
 				//save original over status
 				int original_over = is_game_over;
 
-				std::vector<pair> pawns;
+				Vector<pair> pawns;
 				for (int i = 0; i < rows; ++i)
 				{
 					for (int j = 0; j < columns; ++j)
 					{
 						if (board[i][j] == (player_turn == 'r' ? 'b' : 'r'))
 						{
-							pawns.push_back({ i, j });
+							pawns.push({ i, j });
 						}
 					}
 				}

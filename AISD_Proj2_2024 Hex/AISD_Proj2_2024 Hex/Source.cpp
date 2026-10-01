@@ -1,8 +1,4 @@
 #include "Head.h"
-#include <fstream>
-#include <string>
-#include <vector>
-#include <time.h>
 char readCell() {
 	char c;
 	std::cin.ignore(2);
@@ -53,25 +49,6 @@ void initBoard(char**& board) {
 		}
 	}
 }
-
-static void redirectStream(std::ifstream& fileIn, std::ofstream& fileOut) {
-	// Redirecting cin to read from "input.txt" 
-	std::cin.rdbuf(fileIn.rdbuf());
-	// Redirecting cout to write to "output.txt" 
-	std::cout.rdbuf(fileOut.rdbuf());
-}
-std::string test_list[] = {
-	//"0",
-	//"1",
-	//"2",
-	//"3",
-	//"4",
-	//"5",
-	//"6", 
-	//"7",
-	//"11", 
-	"16"
-};
 
 void main_loop(){
 	Game game;
@@ -157,27 +134,6 @@ void main_loop(){
 	}
 }
 int main() {
-	// tester 
-	auto old_cout = std::cout.rdbuf();
-	auto old_cin = std::cin.rdbuf();
-	for (std::string test : test_list) {
-		//start timer 
-		clock_t start = clock();
-		std::cout<< test + ".in.txt"<<std::endl;
-		std::ifstream fileIn(test+".in.txt");
-		std::ofstream fileOut("my_" + test + ".out");
-		redirectStream(fileIn, fileOut);
-		main_loop();
-		//end timer
-		clock_t end = clock();
-		std::cout.rdbuf(old_cout);
-		std::cin.rdbuf(old_cin);
-		std::cout << "done" << std::endl;
-		std::cout << "Time: " << (double)(end - start) / CLOCKS_PER_SEC << std::endl;
-	}
-	char* test = new char[100];
-	std::cin >> test;
-	
-	//main_loop();
-	
+	main_loop();
+	return 0;
 }

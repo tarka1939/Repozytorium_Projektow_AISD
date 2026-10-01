@@ -1,5 +1,4 @@
-#include "utils.h"
-#include <string.h>
+#include "Utils.h"
 
 //string hashing function
 int Hash(char* key) {

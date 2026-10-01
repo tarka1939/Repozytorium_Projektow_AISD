@@ -1,7 +1,8 @@
 #pragma once
 #include "myString.h"
 #include "Stack.h"
-#include "Queue.h" 
+#include "Queue.h"
+#include <cstdio>
 //reversed polish notation
 class RPN
 {

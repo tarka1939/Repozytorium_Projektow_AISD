@@ -1,9 +1,10 @@
-using namespace std;
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <iomanip>
+#include <cstring>
 #include "Graph.h"
 #include <fstream>
+using namespace std;
 //function that counts * appearances in 2d array
 
 int CountStars(char** map, int sizeX, int sizeY) {

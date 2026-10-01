@@ -1,5 +1,6 @@
 #pragma once
 #include "List.h"
+#include "Block.h"
 template <typename T>
 class BlockList {
     List<Block<T>> list;

@@ -2,7 +2,7 @@
 #ifndef C_H
 #define C_H
 #include "Vector.h"
-#include <String.h>
+#include <cstring>
 #include <iostream>
 class myString
 {

@@ -1,4 +1,6 @@
-﻿#include "Css.h"
+﻿#define _CRT_SECURE_NO_WARNINGS
+#include "Header.h"
+#include "Css.h"
 #include "BlockList.h"
 
 using namespace std;
